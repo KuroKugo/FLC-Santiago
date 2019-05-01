@@ -1,0 +1,58 @@
+\documentclass[letter, 12pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{graphicx}
+\usepackage{fullpage} % changes the margin
+\usepackage{natbib}
+\bibliographystyle{abbrvnat}
+\setcitestyle{authoryear,open={(},close={)}}
+
+\begin{document}
+%Update this information!!!!
+\noindent
+\large\textbf{CMPT 440 -- Spring 2019: Quantum Finite Automata} \\ \\
+\textbf{Christian Santiago} \\
+\normalsize   Due Date: 22/4/2019
+
+
+\section*{Theoretical Background}
+Quantum finite automata has been categorized into distinct types of quantum state machines. The  quantum state machine can be defined broadly by the 3-tuple that is $M = (S, s_0,\delta)$. Where $\delta(s,t)$ is the amplitude of the transition function from $s$ to $t$ and probability of the transition is $|\delta(s,t)|^2$. The probability of 1 denotes that the transition is probabilistic and 0 denoting the opposite. The Hilber space is used as a computational basis for $M$ based on the unit circle for calculating probability. The elements of $S$ \emph{states} and $\hat{H}$ as \emph{superposition states}. The unitary operator describes the operation for the superposition of states $\psi = \Sigma \alpha_i s_i$ and the amplitude also defines the probability of the superposition states as $|\langle \psi , s_i \rangle|^2$. The q-\emph{state machine} is then written as $M = (H, s_0, U)$ A quantum state machine of with accepting states is finally written as the following:
+\begin{equation}
+    M_f = (S, s_0,\delta, S_f)
+\end{equation}
+Where $M = (S, s_0,\delta)$ is a QSM.
+This formula introduced by \cite{Gudder2000}. From this 1-way and 2-way finite automata can be defined. These are further categorized as measure-once quantum finite automata (MO-QFAs) defined as $M = (Q, \Sigma,\delta, q_o, F)$  and measure-many quantum finite automata (MM-QFAs) defined as $M = (Q, \Sigma,\delta, q_o, Q_{acc}, Q_{rej})$. The difference being, measuring after calculation and measuring after each transition receptively. \cite{Brodsky}
+
+\section*{An Example}
+The result of these quantum finite automata allow the acceptance of non-regular languages such as $L = a^nb^n$ The two way finite automata can check each condition in each direction not limited to only checking in a single direction. This allows for the start to be in some arbitrary position $s_i$ in the string input and work from that point. This allows a check of both side at a time for which a regular DFA will not be able model without expanding the DFA by the length of the string.
+
+% This is how you cite
+%	\cite{Gudder2000}
+%	\cite{Brodsky}
+
+
+
+%=============================================
+\bibliographystyle{acl}
+\bibliography{Cites.bib}
+
+\end{document}
+
+
+\ifx
+Comments!
+\fi
+
+% ===========
+
+\ifx
+
+%==============
+
+% References if you want it manual
+
+% \bibitem{Robotics} Fred G. Martin \emph{Robotics Explorations: A Hands-On Introduction to Engineering}. New Jersey: Prentice Hall.
+
+% \bibitem{Flueck}  Flueck, Alexander J. 2005. \emph{ECE 100}[online]. Chicago: Illinois Institute of Technology, Electrical and Computer Engineering Department, 2005 [cited 30
+% August 2005]. Available from World Wide Web: (http://www.ece.iit.edu/~flueck/ece100).
+
