@@ -1,0 +1,26 @@
+\begin{thebibliography}{2}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Brodsky and Pippenger(2002)]{Brodsky}
+A.~Brodsky and N.~Pippenger.
+\newblock Characterizations of 1-way quantum finite automata.
+\newblock \emph{SIAM Journal on Computing}, 31\penalty0 (5):\penalty0 1456,
+  2002.
+\newblock ISSN 00975397.
+\newblock URL
+  \url{http://online.library.marist.edu/login?url=https://search.ebscohost.com/login.aspx?direct=true&db=afh&AN=10194964&site=ehost-live}.
+
+\bibitem[Gudder(2000)]{Gudder2000}
+S.~Gudder.
+\newblock Basic properties of quantum automata.
+\newblock \emph{Foundations of Physics}, 30\penalty0 (2):\penalty0 301--319,
+  Feb 2000.
+\newblock ISSN 1572-9516.
+\newblock \doi{10.1023/A:1003649201735}.
+\newblock URL \url{https://doi.org/10.1023/A:1003649201735}.
+
+\end{thebibliography}
