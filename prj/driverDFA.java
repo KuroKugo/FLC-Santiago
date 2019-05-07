@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 
 public class driverDFA extends wordFilter {
     private int state;
-    private Pattern regex = Pattern.compile("[a-zA-Z]");
+    private Pattern regex = Pattern.compile("[a-z]*");
     private int a = (int) 'a';
     private ArrayList<Integer> accept = new ArrayList<Integer>(Arrays.asList(q3, q8, q13, q17, q21, q29, q33));
 
@@ -22,8 +22,10 @@ public class driverDFA extends wordFilter {
 
     public void process(String s) {
       String str = s.toLowerCase();
-      Matcher m = regex.matcher(s);
-      if (m.matches())
+      Matcher m = regex.matcher(str);
+      boolean match = m.matches();
+      System.out.println(match);
+      if (match)
       {
         for (int i = 0; i < str.length(); i++) {
           char c = s.charAt(i);
@@ -46,12 +48,9 @@ public class driverDFA extends wordFilter {
     }
 
     public static void main(String[] args) {
-
-      driverDFA d = new driverDFA();
-       
-
-      System.out.printf("Try saying a bad word\n");
       String s = args[0];
+      driverDFA d = new driverDFA();
+
       d.reset();
       d.process(s);
       if (d.accepted()) {
