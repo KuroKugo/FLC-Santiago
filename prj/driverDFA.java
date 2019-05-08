@@ -21,7 +21,7 @@ public class driverDFA extends wordFilter {
     private int state;
     private int transState;
     private ArrayList<String> alphabet = new ArrayList<>();
-    private Pattern regex = Pattern.compile("[a-z]*\\d*[a-z]*\\d*");
+    private Pattern regex = Pattern.compile("[a-z]*");
     private int a = (int) 'a';
     int[][] deltaTrans;
     // private ArrayList<Integer> accept = new ArrayList<Integer>(Arrays.asList(q3, q8, q13, q17, q21, q29, q33));
@@ -81,12 +81,12 @@ public class driverDFA extends wordFilter {
 
       // System.out.println(" " + transitions);
 
-      for (int i = 0; i < 36; i ++) {
+      for (int i = 0; i < 26; i ++) {
         deltaTrans[0][i] = i + 1;
         // System.out.println(" Delta: [0][" + i + "] = " + (i + 1));
       }
       for (int i = 1; i < deltaTrans.length; i ++) {
-        for (int j = 0; j < 36; j ++) {
+        for (int j = 0; j < 26; j ++) {
           deltaTrans[i][j] =  errorState;
         }
         // System.out.println(" Transition at index: deltaTrans[" + i + "] has been filled with " + errorState);
@@ -103,7 +103,7 @@ public class driverDFA extends wordFilter {
               transState = deltaTrans[0][nextState];
             } else {
                 if (deltaTrans[transState][nextState] == errorState) {
-                  deltaTrans[transState][nextState] = 36 + i + d;
+                  deltaTrans[transState][nextState] = 26 + i + d;
                   // System.out.println("Calc next State " + deltaTrans[transState][nextState]);
                   if (i + 1 == wordList.get(d).length()) {
                     acceptedStates.add(deltaTrans[transState][nextState]);
