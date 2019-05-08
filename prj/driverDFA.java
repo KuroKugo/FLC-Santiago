@@ -76,7 +76,7 @@ public class driverDFA extends wordFilter {
         transitions += word.length();
       }
       
-      deltaTrans = new int[transitions + 36][36];
+      deltaTrans = new int[transitions + 26][26];
       errorState = deltaTrans.length - 1;
 
       // System.out.println(" " + transitions);
@@ -105,7 +105,7 @@ public class driverDFA extends wordFilter {
               transState = deltaTrans[0][nextState];
             } else {
                 if (deltaTrans[transState][nextState] == errorState) {
-                  deltaTrans[transState][nextState] = 26 + transitions;
+                  deltaTrans[transState][nextState] = 26 + i + d;
                   // System.out.println("Calc next State " + deltaTrans[transState][nextState]);
                   if (i + 1 == wordList.get(d).length()) {
                     acceptedStates.add(deltaTrans[transState][nextState]);
