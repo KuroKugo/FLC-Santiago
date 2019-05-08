@@ -126,21 +126,27 @@ public class driverDFA extends wordFilter {
     public void addWord(String word) {
 		
       BufferedWriter writer;
-      
-      try {
-        writer = new BufferedWriter(new FileWriter("./censor.txt", true));
-        if (!wordList.contains(word)) {
-          writer.write(word);
-          writer.newLine();
-          System.out.printf("The word " + word + " has been added to the filter.\n");
+      Matcher m = regex.matcher(word);
+      boolean match = m.matches();
+      if (match) {
+        try {
+          writer = new BufferedWriter(new FileWriter("./censor.txt", true));
+          if (!wordList.contains(word)) {
+            writer.write(word);
+            writer.newLine();
+            System.out.printf("The word " + word + " has been added to the filter.\n");
+          }
+          writer.flush();
+          
+          writer.close();
         }
-        writer.flush();
-        
-        writer.close();
+        catch (IOException e) {
+          e.printStackTrace();
+        }	
+      } else {
+        System.out.printf("This word " + word + " has invalid charachters.\n");
       }
-      catch (IOException e) {
-        e.printStackTrace();
-      }	
+      
     }
 
     public void loadWordList() {
