@@ -76,7 +76,7 @@ public class driverDFA extends wordFilter {
         transitions += word.length();
       }
       
-      deltaTrans = new int[transitions + 36][36];
+      deltaTrans = new int[transitions + 26][26];
       errorState = deltaTrans.length - 1;
 
       // System.out.println(" " + transitions);
@@ -105,7 +105,7 @@ public class driverDFA extends wordFilter {
               transState = deltaTrans[0][nextState];
             } else {
                 if (deltaTrans[transState][nextState] == errorState) {
-                  deltaTrans[transState][nextState] = 26 + transitions;
+                  deltaTrans[transState][nextState] = 26 + i + d;
                   // System.out.println("Calc next State " + deltaTrans[transState][nextState]);
                   if (i + 1 == wordList.get(d).length()) {
                     acceptedStates.add(deltaTrans[transState][nextState]);
@@ -126,21 +126,27 @@ public class driverDFA extends wordFilter {
     public void addWord(String word) {
 		
       BufferedWriter writer;
-      
-      try {
-        writer = new BufferedWriter(new FileWriter("./censor.txt", true));
-        if (!wordList.contains(word)) {
-          writer.write(word);
-          writer.newLine();
-          System.out.printf("The word " + word + " has been added to the filter.\n");
+      Matcher m = regex.matcher(word);
+      boolean match = m.matches();
+      if (match) {
+        try {
+          writer = new BufferedWriter(new FileWriter("./censor.txt", true));
+          if (!wordList.contains(word)) {
+            writer.write(word);
+            writer.newLine();
+            System.out.printf("The word " + word + " has been added to the filter.\n");
+          }
+          writer.flush();
+          
+          writer.close();
         }
-        writer.flush();
-        
-        writer.close();
+        catch (IOException e) {
+          e.printStackTrace();
+        }	
+      } else {
+        System.out.printf("This word " + word + " has invalid charachters.\n");
       }
-      catch (IOException e) {
-        e.printStackTrace();
-      }	
+      
     }
 
     public void loadWordList() {
