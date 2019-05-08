@@ -70,7 +70,6 @@ public class driverDFA extends wordFilter {
 
     public void createTransition() {
       int transitions = 0;
-      String[] words;
 
       for (String word : wordList) {
         transitions += word.length();
@@ -100,17 +99,21 @@ public class driverDFA extends wordFilter {
           int letter = (int) c;
           int nextState = letter - a;
           try {
-            // System.out.println(wordList.get(d) + " current Delta: [" + transState + "][" + nextState + "]");
+            System.out.println(wordList.get(d) + " at " + c + " current Delta: [" + transState + "][" + nextState + "]");
             if (i == 0) {
               transState = deltaTrans[0][nextState];
+
+              System.out.println("Calc next State " + deltaTrans[0][nextState]);
             } else {
                 if (deltaTrans[transState][nextState] == errorState) {
-                  deltaTrans[transState][nextState] = transitions + i;
-                  // System.out.println("Calc next State " + deltaTrans[transState][nextState]);
+                  deltaTrans[transState][nextState] = transitions;
+                  System.out.println("Calc next State " + (deltaTrans[transState][nextState]));
                   if (i + 1 == wordList.get(d).length()) {
                     acceptedStates.add(deltaTrans[transState][nextState]);
-                    transitions = i + 1;
+                    transitions--;
                   }
+                } else {
+                  transitions--;
                 }
                 transState = deltaTrans[transState][nextState];
               }
@@ -151,6 +154,8 @@ public class driverDFA extends wordFilter {
     }
 
     public void loadWordList() {
+
+      wordList = new ArrayList<>();
       BufferedReader reader;
       try {
         reader = new BufferedReader(new FileReader("./censor.txt"));
