@@ -20,8 +20,8 @@ public class driverDFA extends wordFilter {
     private int errorState;
     private int state;
     private int transState;
-    private int alphabet;
-    private Pattern regex = Pattern.compile("[a-z]*");
+    private ArrayList<String> alphabet = new ArrayList<>();
+    private Pattern regex = Pattern.compile("[a-z]*\\d*[a-z]*\\d*");
     private int a = (int) 'a';
     int[][] deltaTrans;
     // private ArrayList<Integer> accept = new ArrayList<Integer>(Arrays.asList(q3, q8, q13, q17, q21, q29, q33));
@@ -72,30 +72,21 @@ public class driverDFA extends wordFilter {
       int transitions = 0;
       String[] words;
 
-      // words = allowedWords;
-      // for (String word : words) {
-      //   transitions += word.length();
-      // }
-
-      // for (String word : allowedWords) {
-      //   wordList.add(word);
-      // }
       for (String word : wordList) {
         transitions += word.length();
       }
       
-      deltaTrans = new int[transitions + 26][26];
+      deltaTrans = new int[transitions + 36][36];
       errorState = deltaTrans.length - 1;
-      // String testWord = wordList.get(0);
 
       // System.out.println(" " + transitions);
 
-      for (int i = 0; i < 26; i ++) {
+      for (int i = 0; i < 36; i ++) {
         deltaTrans[0][i] = i + 1;
         // System.out.println(" Delta: [0][" + i + "] = " + (i + 1));
       }
       for (int i = 1; i < deltaTrans.length; i ++) {
-        for (int j = 0; j < 26; j ++) {
+        for (int j = 0; j < 36; j ++) {
           deltaTrans[i][j] =  errorState;
         }
         // System.out.println(" Transition at index: deltaTrans[" + i + "] has been filled with " + errorState);
@@ -112,7 +103,7 @@ public class driverDFA extends wordFilter {
               transState = deltaTrans[0][nextState];
             } else {
                 if (deltaTrans[transState][nextState] == errorState) {
-                  deltaTrans[transState][nextState] = 26 + i + d;
+                  deltaTrans[transState][nextState] = 36 + i + d;
                   // System.out.println("Calc next State " + deltaTrans[transState][nextState]);
                   if (i + 1 == wordList.get(d).length()) {
                     acceptedStates.add(deltaTrans[transState][nextState]);
