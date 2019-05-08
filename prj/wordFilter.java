@@ -2,8 +2,7 @@ import java.util.ArrayList;
 
 public abstract class wordFilter {
 
-    // protected ArrayList <String> words = new ArrayList<>();
-    //{"ass", "asswhole", "bitch", "crap", "fuck", "fucker", "motherfucker", "shit"};
+  protected String [] allowedWords = {"ass", "asswhole", "bitch", "crap", "fuck", "fucker", "motherfucker", "shit"};
 
     protected static final int q0 = 0;
     protected static final int q1 = 1;
