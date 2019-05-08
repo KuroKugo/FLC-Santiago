@@ -92,6 +92,8 @@ public class driverDFA extends wordFilter {
         // System.out.println(" Transition at index: deltaTrans[" + i + "] has been filled with " + errorState);
       }
 
+      transitions = 0;
+
       for (int d = 0; d < wordList.size(); d ++) {
         for (int i = 0; i < wordList.get(d).length(); i++) {
           char c = wordList.get(d).charAt(i);
@@ -103,7 +105,7 @@ public class driverDFA extends wordFilter {
               transState = deltaTrans[0][nextState];
             } else {
                 if (deltaTrans[transState][nextState] == errorState) {
-                  deltaTrans[transState][nextState] = 26 + i + d;
+                  deltaTrans[transState][nextState] = 26 + transitions;
                   // System.out.println("Calc next State " + deltaTrans[transState][nextState]);
                   if (i + 1 == wordList.get(d).length()) {
                     acceptedStates.add(deltaTrans[transState][nextState]);
@@ -116,6 +118,7 @@ public class driverDFA extends wordFilter {
             transState = errorState;
           }
           // System.out.println(wordList.get(d) + " next state: " + transState);
+          transitions++;
         }
       }
     }
