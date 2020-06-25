@@ -239,5 +239,6 @@ public class driverDFA extends wordFilter {
       }
 
       System.out.println("-----------------------------------------");
+      scanner.close();
     }
   }
